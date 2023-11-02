@@ -6,6 +6,7 @@
 #include "../poptrie.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 
 
 /* Macro for testing */
@@ -48,7 +49,7 @@ test_init(void)
     poptrie_release(poptrie);
 
     return 0;
-}
+};
 
 static int
 test_lookup(void)
@@ -107,7 +108,7 @@ test_lookup(void)
     poptrie_release(poptrie);
 
     return 0;
-}
+};
 
 static int
 test_lookup2(void)
@@ -166,7 +167,7 @@ test_lookup2(void)
     poptrie_release(poptrie);
 
     return 0;
-}
+};
 
 static int
 test_lookup_linx(void)
@@ -240,7 +241,7 @@ test_lookup_linx(void)
     fclose(fp);
 
     return 0;
-}
+};
 
 static int
 test_lookup_linx_update(void)
@@ -364,7 +365,7 @@ test_lookup_linx_update(void)
     poptrie_release(poptrie);
 
     return 0;
-}
+};
 
 /*
  * Main routine for the basic test
@@ -384,7 +385,7 @@ main(int argc, const char *const argv[])
     TEST_FUNC("lookup_fullroute_update", test_lookup_linx_update, ret);
 
     return ret;
-}
+};
 
 /*
  * Local variables:

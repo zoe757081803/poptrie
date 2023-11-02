@@ -7,6 +7,7 @@
 #include "poptrie.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stddef.h>
 
 #define BUDDY_EOL 0xffffffffUL
 
@@ -18,6 +19,9 @@ buddy_init(struct buddy *bs, int sz, int level, int bsz)
 {
     int i;
     u8 *b;
+
+
+
     u32 *buddy;
     void *blocks;
     u64 off;
@@ -76,7 +80,7 @@ buddy_init(struct buddy *bs, int sz, int level, int bsz)
     bs->b = b;
 
     return 0;
-}
+};
 
 /*
  * Release the buddy system
@@ -87,7 +91,7 @@ buddy_release(struct buddy *bs)
     free(bs->buddy);
     free(bs->blocks);
     free(bs->b);
-}
+};
 
 /*
  * Split the block at the level n
@@ -124,7 +128,7 @@ _split_buddy(struct buddy *bs, int lv)
     *(u32 *)((u64)bs->blocks + bs->bsz * bs->buddy[lv]) = next;
 
     return 0;
-}
+};
 
 /*
  * Allocate (2**sz) blocks
@@ -140,7 +144,7 @@ buddy_alloc(struct buddy *bs, int n)
     }
 
     return (void *)((u64)bs->blocks + bs->bsz * ret);
-}
+};
 int
 buddy_alloc2(struct buddy *bs, int sz)
 {
@@ -176,7 +180,7 @@ buddy_alloc2(struct buddy *bs, int sz)
     bs->b[(a + (1 << sz) - 1) >> 3] |= 1 << ((a + (1 << sz) - 1) & 0x7);
 
     return a;
-}
+};
 
 /*
  * Merge blocks onto an upper level if possible
@@ -218,7 +222,7 @@ _merge(struct buddy *bs, int off, int lv)
 
     /* Try to merge the upper level */
     _merge(bs, s, lv + 1);
-}
+};
 
 /*
  * Free
@@ -232,7 +236,7 @@ buddy_free(struct buddy *bs, void *a)
     off = ((u64)a - (u64)bs->blocks) / bs->bsz;
 
     buddy_free2(bs, off);
-}
+};
 void
 buddy_free2(struct buddy *bs, int a)
 {
@@ -278,7 +282,7 @@ buddy_free2(struct buddy *bs, int a)
 
 
     _merge(bs, a, sz);
-}
+};
 
 /*
  * Local variables:

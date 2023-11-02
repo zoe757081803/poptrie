@@ -8,6 +8,7 @@
 #include "poptrie_private.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stddef.h>
 
 #define INDEX(a, s, n) \
     (((u64)(a) << 32 >> (64 - ((s) + (n)))) & ((1 << (n)) - 1))

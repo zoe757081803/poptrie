@@ -7,10 +7,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-
+#include <stddef.h>
+// #include <arpa/inet.h>
+// #include <sys/socket.h>
+// #include <netinet/in.h>
+#include <winsock2.h>
+#include <ws2tcpip.h>
 
 /* Macro for testing */
 #define TEST_FUNC(str, func, ret)                \
@@ -50,7 +52,7 @@ in6_addr_to_uint128(struct in6_addr *in6)
     }
 
     return a;
-}
+};
 
 
 /*
@@ -73,7 +75,7 @@ test_init(void)
     poptrie_release(poptrie);
 
     return 0;
-}
+};
 
 static int
 test_lookup(void)
@@ -140,7 +142,7 @@ test_lookup(void)
     poptrie_release(poptrie);
 
     return 0;
-}
+};
 
 static int
 test_lookup_linx(void)
@@ -224,7 +226,7 @@ test_lookup_linx(void)
     fclose(fp);
 
     return 0;
-}
+};
 
 /*
  * Main routine for the basic test
@@ -242,7 +244,7 @@ main(int argc, const char *const argv[])
     TEST_FUNC("lookup6_fullroute", test_lookup_linx, ret);
 
     return ret;
-}
+};
 
 /*
  * Local variables:

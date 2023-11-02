@@ -7,6 +7,7 @@
 #include "poptrie.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stddef.h>
 
 #define INDEX(a, s, n) \
     (((u64)(a) << 32 >> (64 - ((s) + (n)))) & ((1 << (n)) - 1))
@@ -113,7 +114,7 @@ poptrie_init(struct poptrie *poptrie, int sz1, int sz0)
     poptrie->fib.entries[0].refs = 1;
 
     return poptrie;
-}
+};
 
 /*
  * Release the poptrie data structure
@@ -150,7 +151,7 @@ poptrie_release(struct poptrie *poptrie)
     if ( poptrie->_allocated ) {
         free(poptrie);
     }
-}
+};
 
 /*
  * Free the allocated memory by the radix tree
@@ -163,7 +164,7 @@ _release_radix(struct radix_node *node)
         _release_radix(node->right);
         free(node);
     }
-}
+};
 
 /*
  * Local variables:
